@@ -101,7 +101,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* الأقسام (Sections) */
+        /* الأقسام (Sections) - تم تعديل المسافات هنا */
         section {
             min-height: 100vh;
             display: flex;
@@ -109,15 +109,21 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px; /* زيادة الحشو الداخلي لرأس وقاع القسم */
             box-sizing: border-box;
             position: relative;
+            margin-bottom: 40px; /* إضافة مسافة عمودية واضحة تفصل كل قسم عن الآخر */
+        }
+
+        section:last-of-type {
+            margin-bottom: 0; /* إلغاء المسافة للقسم الأخير */
         }
 
         /* الواجهة الرئيسية */
         .hero-section {
             background: url('https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=1000') no-repeat center center/cover;
             color: white;
+            margin-bottom: 50px;
         }
 
         .hero-section::before {
@@ -140,15 +146,16 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* تنسيق البسملة الممتدة وغير المضغوطة */
+        /* تنسيق البسملة الممتدة وغير المضغوطة باللون الأسود */
         .basmala-text {
             font-family: 'Amiri', serif;
-            font-size: 1.3rem;
-            color: #e2d1b8;
-            letter-spacing: 2px; /* تمديد الحروف والمسافات لتأخذ طولاً وراحة */
-            word-spacing: 4px;   /* زيادة المسافة بين الكلمات */
-            margin-bottom: 25px; /* مسافة واضحة بينها وبين الآية */
+            font-size: 1.35rem;
+            color: #000000;      /* لون أسود صريح */
+            letter-spacing: 2px; 
+            word-spacing: 4px;   
+            margin-bottom: 25px; 
             display: block;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.2);
         }
 
         /* تنسيق الآية الكريمة */
@@ -318,7 +325,7 @@
         <!-- القسم الأول: الواجهة -->
         <section class="hero-section">
             <div class="hero-content">
-                <!-- البسملة ممتدة بمسافات مريحة وتليها مسافة عمودية -->
+                <!-- البسملة ممتدة بمسافات مريحة وتليها مسافة عمودية باللون الأسود -->
                 <p data-aos="fade-up" class="basmala-text">بِـسْـمِ اللَّهِ الـرَّحْـمَٰـنِ الـرَّحِـيـمِ</p>
                 
                 <!-- الآية الكريمة بنفس الخط المنسق وبينهما مسافة مناسبة -->
@@ -357,7 +364,7 @@
                     <input type="text" id="guest-name" placeholder="إسم الضيف الكريم" required>
                     
                     <select id="attendance" required>
-                        <option value="" disabled selected>هل ستشرفنا بالحضور؟</option>
+                        <option value="" disabled selected>هل ستشرفنا بالحضور?</option>
                         <option value="نعم، بكل سرور سأحضر">نعم، بكل سرور سأحضر</option>
                         <option value="ربما (لم أقرر بعد)">ربما ( لم أقرر بعد )</option>
                         <option value="أعتذر، لظروف خاصة">أعتذر، لظروف خاصة</option>
@@ -466,7 +473,7 @@
             const status = document.getElementById('attendance').value;
             const companionCount = document.getElementById('companion-count').innerText;
             
-            const phoneNumber = "201033674242"; // تذكر تغيير الرقم هنا
+            const phoneNumber = "201033674242"; 
             
             let companionText = companionCount === "0" ? "بدون مرافقين" : `${companionCount} مرافقين`;
             if (companionCount === "1") companionText = "مرافق واحد";
