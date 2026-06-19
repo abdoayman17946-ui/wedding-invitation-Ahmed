@@ -117,16 +117,16 @@
         /* تعديل السهم ليكون أكبر حجماً ومرفوعاً لأعلى */
         .scroll-arrow {
             position: absolute;
-            bottom: 95px; /* تم رفعه أكثر ليكون واضحاً وفوق الحافة تماماً */
-            width: 55px;  /* تم التكبير من 45px إلى 55px */
-            height: 55px; /* تم التكبير من 45px إلى 55px */
+            bottom: 95px; 
+            width: 55px;  
+            height: 55px; 
             background: rgba(255, 255, 255, 0.9);
             border: 1.5px solid var(--primary);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.4rem; /* تكبير حجم السهم التعبيري الداخلي */
+            font-size: 1.4rem; 
             color: var(--secondary);
             animation: bounce 1.8s infinite;
             cursor: pointer;
@@ -311,7 +311,7 @@
             transform: scale(0.98);
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 14px;
             margin: 8px 0;
@@ -323,10 +323,15 @@
             background-color: #fafafa;
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             border-color: var(--primary);
             outline: none;
             background-color: #fff;
+        }
+
+        textarea {
+            resize: none;
+            height: 90px;
         }
     </style>
 </head>
@@ -403,6 +408,9 @@
                         <div class="counter-value" id="companion-count">0</div>
                         <button type="button" class="counter-btn" onclick="incrementCounter()">+</button>
                     </div>
+
+                    <!-- حقل الرسالة الاختياري الجديد -->
+                    <textarea id="guest-message" placeholder="رسالة إلى العروسين ( اختياري )"></textarea>
 
                     <button type="submit" class="btn">إرسال التأكيد عبر الواتساب</button>
                 </form>
@@ -504,6 +512,7 @@
             const name = document.getElementById('guest-name').value;
             const status = document.getElementById('attendance').value;
             const companionCount = document.getElementById('companion-count').innerText;
+            const guestMessage = document.getElementById('guest-message').value.trim();
             
             const phoneNumber = "201033674242"; 
             
@@ -511,7 +520,12 @@
             if (companionCount === "1") companionText = "مرافق واحد";
             if (companionCount === "2") companionText = "مرافقين اثنين";
 
-            const text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aعدد المرافقين: ${companionText}`;
+            let text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aعدد المرافقين: ${companionText}`;
+            
+            // إضافة الرسالة إذا كانت غير فارغة
+            if (guestMessage !== "") {
+                text += `%0Aالرسالة: ${encodeURIComponent(guestMessage)}`;
+            }
             
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
         }
