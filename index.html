@@ -114,26 +114,26 @@
             position: relative;
         }
 
-        /* تعديل المسافة هنا لرفع السهم لأعلى قليلاً */
+        /* تعديل السهم ليكون أكبر حجماً ومرفوعاً لأعلى */
         .scroll-arrow {
             position: absolute;
-            bottom: 65px; /* تم تغييرها من 25px لرفع السهم عن الحافة */
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid var(--primary);
+            bottom: 95px; /* تم رفعه أكثر ليكون واضحاً وفوق الحافة تماماً */
+            width: 55px;  /* تم التكبير من 45px إلى 55px */
+            height: 55px; /* تم التكبير من 45px إلى 55px */
+            background: rgba(255, 255, 255, 0.9);
+            border: 1.5px solid var(--primary);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2rem;
+            font-size: 1.4rem; /* تكبير حجم السهم التعبيري الداخلي */
             color: var(--secondary);
             animation: bounce 1.8s infinite;
             cursor: pointer;
             z-index: 10;
             user-select: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            transition: background 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+            transition: background 0.3s, transform 0.2s;
         }
 
         .scroll-arrow:active {
