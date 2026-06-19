@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعوة زفاف</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:#faf7f2;color:#333;text-align:center;}
+.hero{height:100vh;background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600') center/cover;display:flex;align-items:center;justify-content:center;position:relative;}
+.hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);}
+.hero-content{position:relative;color:#fff;z-index:2;}
+.hero h1{font-size:60px;}
+.hero p{font-size:22px;}
+.section{padding:70px 20px;}
+.title{font-size:35px;margin-bottom:20px;color:#b68d40;}
+.countdown{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+.box{width:90px;padding:15px;background:white;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08);}
+.box span{display:block;font-size:28px;font-weight:bold;}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;max-width:1100px;margin:auto;}
+.gallery img{width:100%;height:320px;object-fit:cover;border-radius:15px;}
+.details{max-width:700px;margin:auto;line-height:2;font-size:20px;}
+.btn{display:inline-block;margin-top:25px;background:#b68d40;color:white;text-decoration:none;padding:15px 35px;border-radius:50px;}
+iframe{width:100%;max-width:1000px;height:400px;border:none;border-radius:20px;}
+footer{padding:30px;background:#111;color:white;}
+@media(max-width:768px){.hero h1{font-size:42px;}}
+</style>
+</head>
+<body>
+<section class="hero">
+<div class="hero-content">
+<h1>زين & سارة</h1>
+<p>يسرنا دعوتكم لحضور حفل زفافنا</p>
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">موعد الحفل</h2>
+<div class="countdown">
+<div class="box"><span id="days">0</span>يوم</div>
+<div class="box"><span id="hours">0</span>ساعة</div>
+<div class="box"><span id="minutes">0</span>دقيقة</div>
+<div class="box"><span id="seconds">0</span>ثانية</div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="title">تفاصيل المناسبة</h2>
+<div class="details">
+📅 الجمعة 15 أغسطس 2026<br>
+🕗 الساعة 8 مساءً<br>
+📍 قاعة الأفراح الملكية
+</div>
+<a href="#location" class="btn">عرض الموقع</a>
+</section>
+
+<section class="section">
+<h2 class="title">ذكرياتنا</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200">
+<img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1200">
+</div>
+</section>
+
+<section class="section" id="location">
+<h2 class="title">موقع الحفل</h2>
+<iframe src="https://maps.google.com/maps?q=cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
+
+<section class="section">
+<h2 class="title">تأكيد الحضور</h2>
+<a class="btn" href="https://wa.me/201000000000?text=سأحضر%20الحفل">تأكيد عبر واتساب</a>
+</section>
+
+<footer>ننتظر حضوركم ومشاركتكم فرحتنا ❤️</footer>
+
+<script>
+const targetDate = new Date("August 15, 2026 20:00:00").getTime();
+setInterval(() => {
+const now = new Date().getTime();
+const distance = targetDate - now;
+document.getElementById("days").innerHTML = Math.floor(distance/(1000*60*60*24));
+document.getElementById("hours").innerHTML = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+document.getElementById("minutes").innerHTML = Math.floor((distance%(1000*60*60))/(1000*60));
+document.getElementById("seconds").innerHTML = Math.floor((distance%(1000*60))/1000);
+},1000);
+</script>
+</body>
+</html>
