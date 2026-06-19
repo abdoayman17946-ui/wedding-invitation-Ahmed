@@ -1,93 +1,364 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دعوة زفاف</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة زفاف فاخرة</title>
+    
+    <!-- الخطوط والأنيميشن -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5a880;
+            --secondary: #8e7544;
+            --dark: #2c2c2c;
+            --bg: #faf6f0;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
-body{background:#faf7f2;color:#333;text-align:center;}
-.hero{height:100vh;background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600') center/cover;display:flex;align-items:center;justify-content:center;position:relative;}
-.hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.45);}
-.hero-content{position:relative;color:#fff;z-index:2;}
-.hero h1{font-size:60px;}
-.hero p{font-size:22px;}
-.section{padding:70px 20px;}
-.title{font-size:35px;margin-bottom:20px;color:#b68d40;}
-.countdown{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
-.box{width:90px;padding:15px;background:white;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,.08);}
-.box span{display:block;font-size:28px;font-weight:bold;}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;max-width:1100px;margin:auto;}
-.gallery img{width:100%;height:320px;object-fit:cover;border-radius:15px;}
-.details{max-width:700px;margin:auto;line-height:2;font-size:20px;}
-.btn{display:inline-block;margin-top:25px;background:#b68d40;color:white;text-decoration:none;padding:15px 35px;border-radius:50px;}
-iframe{width:100%;max-width:1000px;height:400px;border:none;border-radius:20px;}
-footer{padding:30px;background:#111;color:white;}
-@media(max-width:768px){.hero h1{font-size:42px;}}
-</style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* 1. الشاشة الترحيبية */
+        #splash-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            transition: opacity 1s ease-in-out;
+        }
+
+        #splash-screen h2 {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .open-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 12px 35px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .open-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* 2. الهيكل الرئيسي للموقع */
+        .main-content {
+            display: none; /* يظهر بعد فتح الدعوة */
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        /* أوراق الورد المتساقطة */
+        .leaf {
+            position: fixed;
+            top: -10px;
+            font-size: 20px;
+            color: rgba(212, 175, 55, 0.3);
+            pointer-events: none;
+            z-index: 999;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) translateX(50px) rotate(360deg);
+            }
+        }
+
+        /* الموسيقى التحكم */
+        .music-control {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.8);
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            width: 45px; height: 45px;
+            cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px;
+        }
+
+        /* الأقسام (Sections) */
+        section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+        }
+
+        .hero-section {
+            background: url('https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=1000') no-repeat center center/cover;
+            position: relative;
+            color: white;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-family: 'Amiri', serif;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+
+        /* 3. العداد التنازلي */
+        .countdown-container {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            direction: ltr;
+        }
+
+        .time-box {
+            background: white;
+            border: 1px solid var(--primary);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 70px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .time-box label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* 4. تفاصيل الحفل ونموذج الحضور */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(197, 168, 128, 0.3);
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: var(--secondary); }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
 </head>
 <body>
-<section class="hero">
-<div class="hero-content">
-<h1>أحمد & سارة</h1>
-<p>يسرنا دعوتكم لحضور حفل زفافنا</p>
-</div>
-</section>
 
-<section class="section">
-<h2 class="title">موعد الحفل</h2>
-<div class="countdown">
-<div class="box"><span id="days">0</span>يوم</div>
-<div class="box"><span id="hours">0</span>ساعة</div>
-<div class="box"><span id="minutes">0</span>دقيقة</div>
-<div class="box"><span id="seconds">0</span>ثانية</div>
-</div>
-</section>
+    <!-- 1. الشاشة الافتتاحية -->
+    <div id="splash-screen">
+        <h2 class="animate__animated animate__fadeInDown">دعوة زفاف غالية</h2>
+        <p class="animate__animated animate__fadeIn animate__delay-1s" style="color: #bbb; margin-bottom: 30px;">يسعدنا حضوركم لفرحتنا</p>
+        <button class="open-btn animate__animated animate__pulse animate__infinite" onclick="openInvitation()">افتح الدعوة ✉</button>
+    </div>
 
-<section class="section">
-<h2 class="title">تفاصيل المناسبة</h2>
-<div class="details">
-📅 السبت 4 يونيو 2026<br>
-🕗 الساعة 8 مساءً<br>
-📍 قاعة الأفراح الملكية
-</div>
-<a href="#location" class="btn">عرض الموقع</a>
-</section>
+    <!-- زر التحكم بالموسيقى -->
+    <button class="music-control" onclick="toggleMusic()" style="display:none;" id="music-btn">🎵</button>
+    
+    <!-- صوت الخلفية (ضع رابط ملف صوتي حقيقي هنا) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-<section class="section">
-<h2 class="title">ذكرياتنا</h2>
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1200">
-<img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200">
-<img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1200">
-</div>
-</section>
+    <!-- 2. المحتوى الرئيسي للدعوة -->
+    <div class="main-content" id="main-content">
+        
+        <!-- القسم الأول: الواجهة -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <p data-aos="fade-up">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <h1 data-aos="zoom-in" data-aos-duration="1500">زين & سارة</h1>
+                <p data-aos="fade-up" data-aos-delay="300" style="font-size: 1.3rem;">نترقب حضوركم لتكتمل بهجة ليلتنا</p>
+            </div>
+        </section>
 
-<section class="section" id="location">
-<h2 class="title">موقع الحفل</h2>
-<iframe src="https://maps.google.com/maps?q=cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
-</section>
+        <!-- القسم الثاني: العداد التنازلي والموعد -->
+        <section>
+            <div class="card" data-aos="fade-up">
+                <h2 style="font-family: 'Amiri', serif; color: var(--secondary);">موعد ليلتنا</h2>
+                <p>يوم الجمعة، 15 أكتوبر 2026</p>
+                
+                <div class="countdown-container">
+                    <div class="time-box"><span id="seconds">00</span><label>ثانية</label></div>
+                    <div class="time-box"><span id="minutes">00</span><label>دقيقة</label></div>
+                    <div class="time-box"><span id="hours">00</span><label>ساعة</label></div>
+                    <div class="time-box"><span id="days">00</span><label>يوم</label></div>
+                </div>
 
-<section class="section">
-<h2 class="title">تأكيد الحضور</h2>
-<a class="btn" href="https://wa.me/201000000000?text=سأحضر%20الحفل">تأكيد عبر واتساب</a>
-</section>
+                <p>📍 <strong>المكان:</strong> قاعة فيرمونت الفاخرة</p>
+                <a href="https://maps.google.com" target="_blank" class="btn">عرض الموقع على الخريطة</a>
+            </div>
+        </section>
 
-<footer>ننتظر حضوركم ومشاركتكم فرحتنا ❤️</footer>
+        <!-- القسم الثالث: تأكيد الحضور RSVP -->
+        <section style="background-color: #f3ede4;">
+            <div class="card" data-aos="zoom-in">
+                <h2 style="font-family: 'Amiri', serif; color: var(--secondary);">تأكيد الحضور</h2>
+                <p style="font-size: 0.9rem; color: #666;">يرجى تأكيد حضوركم قبل الموعد بـ 10 أيام</p>
+                
+                <form id="rsvp-form" onsubmit="sendRSVP(event)">
+                    <input type="text" id="guest-name" placeholder="إسم الضيف الكريم" required>
+                    <select id="attendance" required>
+                        <option value="" disabled selected>هل ستشرفنا بالحضور؟</option>
+                        <option value="نعم، بكل سرور سأحضر">نعم، بكل سرور سأحضر</option>
+                        <option value="أعتذر، لظروف خاصة">أعتذر، لظروف خاصة</option>
+                    </select>
+                    <select id="companions">
+                        <option value="بدون مرافقين">عدد المرافقين</option>
+                        <option value="مرافق واحد">مرافق واحد</option>
+                        <option value="مرافقين اثنين">مرافقين اثنين</option>
+                    </select>
+                    <button type="submit" class="btn" style="width: 100%;">إرسال التأكيد عبر الواتساب</button>
+                </form>
+            </div>
+        </section>
 
-<script>
-const targetDate = new Date("August 15, 2026 20:00:00").getTime();
-setInterval(() => {
-const now = new Date().getTime();
-const distance = targetDate - now;
-document.getElementById("days").innerHTML = Math.floor(distance/(1000*60*60*24));
-document.getElementById("hours").innerHTML = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-document.getElementById("minutes").innerHTML = Math.floor((distance%(1000*60*60))/(1000*60));
-document.getElementById("seconds").innerHTML = Math.floor((distance%(1000*60))/1000);
-},1000);
-</script>
+        <footer style="padding: 20px; text-align: center; color: #888; font-size: 0.9rem;">
+            دامت دياركم عامرة بالأفراح ✨
+        </footer>
+    </div>
+
+    <!-- سكربتات الحركة والتحكم -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // تفعيل مكتبة أنيميشن التمرير
+        AOS.init({ duration: 1000, once: true });
+
+        const music = document.getElementById('bg-music');
+
+        // وظيفة فتح الدعوة
+        function openInvitation() {
+            document.getElementById('splash-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.style.display = 'block';
+                setTimeout(() => main.style.opacity = '1', 50);
+                
+                // تشغيل الموسيقى وإظهار زر التحكم
+                music.play().catch(e => console.log("المتصفح حظر التشغيل التلقائي"));
+                document.getElementById('music-btn').style.display = 'flex';
+                
+                // بدء تأثير تساقط أوراق الورد
+                setInterval(createLeaf, 300);
+            }, 1000);
+        }
+
+        // كتم وتشغيل الصوت
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('music-btn').innerText = "🎵";
+            } else {
+                music.pause();
+                document.getElementById('music-btn').innerText = "🔇";
+            }
+        }
+
+        // صناعة أوراق الورد المتساقطة
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.innerHTML = '🌸'; 
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.animationDuration = Math.random() * 3 + 2 + 's';
+            leaf.style.fontSize = Math.random() * 15 + 10 + 'px';
+            document.body.appendChild(leaf);
+            setTimeout(() => leaf.remove(), 5000);
+        }
+
+        // العداد التنازلي (عدل التاريخ للموعد المطلوب)
+        const weddingDate = new Date("October 15, 2026 20:00:00").getTime();
+        
+        setInterval(function() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }, 1000);
+
+        // إرسال تأكيد الحضور إلى رقم واتساب محدد
+        function sendRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const status = document.getElementById('attendance').value;
+            const comp = document.getElementById('companions').value;
+            
+            const phoneNumber = "201000000000"; // استبدل هذا برقم هاتفك بصيغة دولية كود مصر كمثال
+            const text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aالمرافقين: ${comp}`;
+            
+            window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
+        }
+    </script>
 </body>
 </html>
