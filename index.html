@@ -289,6 +289,9 @@
                         <option value="بدون مرافقين">عدد المرافقين</option>
                         <option value="مرافق واحد">مرافق واحد</option>
                         <option value="مرافقين اثنين">مرافقين اثنين</option>
+                        <option value="ثلاث مرافقين">مرافقين اثنين</option>
+                        <option value="اربع مرافقين">مرافقين اثنين</option>
+                        <option value="خمس مرافقين">مرافقين اثنين</option>
                     </select>
                     <button type="submit" class="btn">إرسال التأكيد عبر الواتساب</button>
                 </form>
@@ -367,7 +370,7 @@
             const status = document.getElementById('attendance').value;
             const comp = document.getElementById('companions').value;
             
-            const phoneNumber = "201000000000"; // تذكر تغيير الرقم هنا
+            const phoneNumber = "01033674242"; // تذكر تغيير الرقم هنا
             const text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aالمرافقين: ${comp}`;
             
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
