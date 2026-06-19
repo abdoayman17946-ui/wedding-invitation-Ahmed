@@ -140,6 +140,16 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
+        .quran-verse {
+            font-family: 'Amiri', serif;
+            font-size: 1.15rem;
+            color: #e2d1b8;
+            max-width: 320px;
+            margin: 15px auto;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
         /* 3. الكروت والعداد التنازلي المرن */
         .card {
             background: white;
@@ -183,7 +193,7 @@
             font-weight: bold;
         }
 
-        /* تصميم عداد المرافقين الجديد للموبايل */
+        /* تصميم عداد المرافقين الجديد */
         .companion-label {
             display: block;
             text-align: right;
@@ -293,12 +303,13 @@
     <!-- 2. المحتوى الرئيسي -->
     <div class="main-content" id="main-content">
         
-        <!-- القسم الأول: الواجهة -->
+        <!-- القسم الأول: الواجهة (تمت إضافة الآية الكريمة هنا) -->
         <section class="hero-section">
             <div class="hero-content">
-                <p data-aos="fade-up" style="letter-spacing: 1px; font-size: 1.1rem;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <p data-aos="fade-up" style="letter-spacing: 1px; font-size: 1.1rem; margin-bottom: 5px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <p data-aos="fade-up" data-aos-delay="200" class="quran-verse">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"</p>
                 <h1 data-aos="zoom-in" data-aos-duration="1200">زين & سارة</h1>
-                <p data-aos="fade-up" data-aos-delay="300" style="font-size: 1.2rem; font-weight: 300;">نترقب حضوركم لتكتمل بهجة ليلتنا</p>
+                <p data-aos="fade-up" data-aos-delay="400" style="font-size: 1.2rem; font-weight: 300;">نترقب حضوركم لتكتمل بهجة ليلتنا</p>
             </div>
         </section>
 
@@ -320,7 +331,7 @@
             </div>
         </section>
 
-        <!-- القسم الثالث: RSVP تأكيد الحضور والتعديل الجديد -->
+        <!-- القسم الثالث: RSVP تأكيد الحضور -->
         <section style="background-color: #f5ede2;">
             <div class="card" data-aos="zoom-in">
                 <h2 style="font-family: 'Amiri', serif; color: var(--secondary); margin-top: 0; font-size: 1.8rem;">تأكيد الحضور</h2>
@@ -336,7 +347,6 @@
                         <option value="أعتذر، لظروف خاصة">أعتذر، لظروف خاصة</option>
                     </select>
 
-                    <!-- عداد المرافقين بالأزرار الجديد -->
                     <label class="companion-label">عدد المرافقين بصحبتك:</label>
                     <div class="counter-container">
                         <button type="button" class="counter-btn" onclick="decrementCounter()">-</button>
@@ -415,9 +425,9 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
 
-        // وظائف العداد الخاص بالمرافقين
+        // وظائف عداد المرافقين
         let count = 0;
-        const maxCompanions = 10; // أقصى عدد مسموح به لمنع التلاعب
+        const maxCompanions = 10;
 
         function incrementCounter() {
             if (count < maxCompanions) {
@@ -433,16 +443,15 @@
             }
         }
 
-        // إرسال البيانات المحدثة
+        // إرسال البيانات
         function sendRSVP(event) {
             event.preventDefault();
             const name = document.getElementById('guest-name').value;
             const status = document.getElementById('attendance').value;
             const companionCount = document.getElementById('companion-count').innerText;
             
-            const phoneNumber = "201000000000"; // غيره لرقمك الفعلي بمفتاح الدولة
+            const phoneNumber = "201000000000"; // تذكر تغيير الرقم هنا
             
-            // صياغة جملة المرافقين بناءً على العدد
             let companionText = companionCount === "0" ? "بدون مرافقين" : `${companionCount} مرافقين`;
             if (companionCount === "1") companionText = "مرافق واحد";
             if (companionCount === "2") companionText = "مرافقين اثنين";
