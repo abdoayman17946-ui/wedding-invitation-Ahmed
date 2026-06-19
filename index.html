@@ -263,8 +263,9 @@
             margin: 8px 0 15px 0;
         }
 
+        /* تعديل الأزرار لتصبح باللون الأخضر */
         .counter-btn {
-            background-color: var(--primary);
+            background-color: var(--whatsapp-green);
             color: white;
             border: none;
             width: 40px;
@@ -276,10 +277,11 @@
             align-items: center;
             justify-content: center;
             transition: background 0.2s;
+            box-shadow: 0 2px 5px rgba(37, 211, 102, 0.2);
         }
 
         .counter-btn:active {
-            background-color: var(--secondary);
+            background-color: var(--whatsapp-dark);
         }
 
         .counter-value {
@@ -425,7 +427,6 @@
                     <!-- حقل الرسالة الاختياري -->
                     <textarea id="guest-message" placeholder="رسالة إلى العروسين ( اختياري )"></textarea>
 
-                    <!-- تم إضافة كلاس btn-whatsapp لتغيير اللون للأخضر -->
                     <button type="submit" class="btn btn-whatsapp">إرسال التأكيد عبر الواتساب</button>
                 </form>
             </div>
