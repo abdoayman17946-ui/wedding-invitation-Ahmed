@@ -140,16 +140,15 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* تنسيق البسملة الممتدة باللون الأسود */
+        /* تنسيق البسملة الممتدة وغير المضغوطة */
         .basmala-text {
             font-family: 'Amiri', serif;
-            font-size: 1.35rem;
-            color: #000000;
-            letter-spacing: 2px; 
-            word-spacing: 4px;   
-            margin-bottom: 25px;
+            font-size: 1.3rem;
+            color: #e2d1b8;
+            letter-spacing: 2px; /* تمديد الحروف والمسافات لتأخذ طولاً وراحة */
+            word-spacing: 4px;   /* زيادة المسافة بين الكلمات */
+            margin-bottom: 25px; /* مسافة واضحة بينها وبين الآية */
             display: block;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.2);
         }
 
         /* تنسيق الآية الكريمة */
@@ -204,22 +203,6 @@
             font-size: 0.75rem;
             color: #777;
             font-weight: bold;
-        }
-
-        /* تنسيق حاوية الـ QR Code */
-        .qr-container {
-            margin: 20px auto;
-            padding: 10px;
-            border: 2px dashed var(--primary);
-            border-radius: 15px;
-            display: inline-block;
-            background: #fff;
-        }
-
-        .qr-image {
-            width: 160px;
-            height: 160px;
-            display: block;
         }
 
         /* تصميم عداد المرافقين */
@@ -335,7 +318,10 @@
         <!-- القسم الأول: الواجهة -->
         <section class="hero-section">
             <div class="hero-content">
+                <!-- البسملة ممتدة بمسافات مريحة وتليها مسافة عمودية -->
                 <p data-aos="fade-up" class="basmala-text">بِـسْـمِ اللَّهِ الـرَّحْـمَٰـنِ الـرَّحِـيـمِ</p>
+                
+                <!-- الآية الكريمة بنفس الخط المنسق وبينهما مسافة مناسبة -->
                 <p data-aos="fade-up" data-aos-delay="200" class="verse-text">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"</p>
                 
                 <h1 data-aos="zoom-in" data-aos-duration="1200">زين & سارة</h1>
@@ -358,19 +344,6 @@
 
                 <p style="margin-top: 20px;">📍 <strong>المكان:</strong> قاعة فيرمونت الفاخرة</p>
                 <a href="https://maps.google.com" target="_blank" class="btn">عرض الموقع على الخريطة</a>
-            </div>
-        </section>
-
-        <!-- قسم الـ QR Code الجديد -->
-        <section style="min-height: auto; padding: 20px 20px;">
-            <div class="card" data-aos="fade-up">
-                <h2 style="font-family: 'Amiri', serif; color: var(--secondary); margin-top: 0; font-size: 1.6rem;">رمز الاستجابة السريعة (QR)</h2>
-                <p style="font-size: 0.9rem; color: #555;">امسح الكود أدناه لمشاركة موقع الحفل أو فتح الدعوة بسهولة</p>
-                
-                <div class="qr-container">
-                    <!-- استبدل الرابط أدناه برابط صورة الـ QR الخاص بك -->
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://maps.google.com" alt="QR Code" class="qr-image">
-                </div>
             </div>
         </section>
 
