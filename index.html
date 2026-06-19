@@ -114,25 +114,25 @@
             position: relative;
         }
 
-        /* تعديل السهم ليكون أكبر حجماً ومرفوعاً لأعلى */
+        /* تكبير السهم ليكون أوضح وأكبر حجماً */
         .scroll-arrow {
             position: absolute;
             bottom: 95px; 
-            width: 55px;  
-            height: 55px; 
-            background: rgba(255, 255, 255, 0.9);
-            border: 1.5px solid var(--primary);
+            width: 65px;  /* تم التكبير من 55px إلى 65px */
+            height: 65px; /* تم التكبير من 55px إلى 65px */
+            background: rgba(255, 255, 255, 0.93);
+            border: 2px solid var(--primary); /* زيادة سماكة الإطار قليلاً ليناسب الحجم */
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.4rem; 
+            font-size: 1.6rem; /* تم تكبير الأيقونة الداخلية لتتناسب مع حجم الدائرة */
             color: var(--secondary);
             animation: bounce 1.8s infinite;
             cursor: pointer;
             z-index: 10;
             user-select: none;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
             transition: background 0.3s, transform 0.2s;
         }
 
@@ -409,7 +409,7 @@
                         <button type="button" class="counter-btn" onclick="incrementCounter()">+</button>
                     </div>
 
-                    <!-- حقل الرسالة الاختياري الجديد -->
+                    <!-- حقل الرسالة الاختياري -->
                     <textarea id="guest-message" placeholder="رسالة إلى العروسين ( اختياري )"></textarea>
 
                     <button type="submit" class="btn">إرسال التأكيد عبر الواتساب</button>
@@ -522,7 +522,6 @@
 
             let text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aعدد المرافقين: ${companionText}`;
             
-            // إضافة الرسالة إذا كانت غير فارغة
             if (guestMessage !== "") {
                 text += `%0Aالرسالة: ${encodeURIComponent(guestMessage)}`;
             }
