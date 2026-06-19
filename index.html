@@ -101,7 +101,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        /* الأقسام (Sections) - تم تعديل المسافات هنا */
+        /* الأقسام (Sections) */
         section {
             min-height: 100vh;
             display: flex;
@@ -109,21 +109,37 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 60px 20px; /* زيادة الحشو الداخلي لرأس وقاع القسم */
+            padding: 60px 20px;
             box-sizing: border-box;
             position: relative;
-            margin-bottom: 40px; /* إضافة مسافة عمودية واضحة تفصل كل قسم عن الآخر */
         }
 
-        section:last-of-type {
-            margin-bottom: 0; /* إلغاء المسافة للقسم الأخير */
+        /* تنسيق السهم الطافي لأسفل القسم */
+        .scroll-arrow {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 5;
+            user-select: none;
+        }
+
+        .hero-section .scroll-arrow {
+            color: #e2d1b8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-4px); }
         }
 
         /* الواجهة الرئيسية */
         .hero-section {
             background: url('https://images.unsplash.com/photo-1519225495810-7512c696505a?q=80&w=1000') no-repeat center center/cover;
             color: white;
-            margin-bottom: 50px;
         }
 
         .hero-section::before {
@@ -150,7 +166,7 @@
         .basmala-text {
             font-family: 'Amiri', serif;
             font-size: 1.35rem;
-            color: #000000;      /* لون أسود صريح */
+            color: #000000;
             letter-spacing: 2px; 
             word-spacing: 4px;   
             margin-bottom: 25px; 
@@ -323,21 +339,19 @@
     <div class="main-content" id="main-content">
         
         <!-- القسم الأول: الواجهة -->
-        <section class="hero-section">
+        <section class="hero-section" id="sec-1">
             <div class="hero-content">
-                <!-- البسملة ممتدة بمسافات مريحة وتليها مسافة عمودية باللون الأسود -->
                 <p data-aos="fade-up" class="basmala-text">بِـسْـمِ اللَّهِ الـرَّحْـمَٰـنِ الـرَّحِـيـمِ</p>
-                
-                <!-- الآية الكريمة بنفس الخط المنسق وبينهما مسافة مناسبة -->
                 <p data-aos="fade-up" data-aos-delay="200" class="verse-text">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"</p>
-                
                 <h1 data-aos="zoom-in" data-aos-duration="1200">ابراهيم & شيماء</h1>
                 <p data-aos="fade-up" data-aos-delay="400" style="font-size: 1.2rem; font-weight: 300;">نترقب حضوركم لتكتمل بهجة ليلتنا</p>
             </div>
+            <!-- سهم الانتقال للقسم الثاني -->
+            <div class="scroll-arrow" onclick="scrollToSection('sec-2')">🔽</div>
         </section>
 
         <!-- القسم الثاني: الموعد والعداد -->
-        <section>
+        <section id="sec-2">
             <div class="card" data-aos="fade-up">
                 <h2 style="font-family: 'Amiri', serif; color: var(--secondary); margin-top: 0; font-size: 1.8rem;">موعد ليلتنا</h2>
                 <p style="font-size: 1.1rem; margin-bottom: 5px;">يوم الجمعة، 26 يونيو 2026 س 8</p>
@@ -352,10 +366,12 @@
                 <p style="margin-top: 20px;">📍 <strong>المكان:</strong> قاعة سما -ببطا - بنها</p>
                 <a href="https://maps.app.goo.gl/RdyAT1ZkAj1b21AL6" target="_blank" class="btn">عرض الموقع على الخريطة</a>
             </div>
+            <!-- سهم الانتقال للقسم الثالث -->
+            <div class="scroll-arrow" onclick="scrollToSection('sec-3')">🔽</div>
         </section>
 
         <!-- القسم الثالث: RSVP تأكيد الحضور -->
-        <section style="background-color: #f5ede2;">
+        <section style="background-color: #f5ede2;" id="sec-3">
             <div class="card" data-aos="zoom-in">
                 <h2 style="font-family: 'Amiri', serif; color: var(--secondary); margin-top: 0; font-size: 1.8rem;">تأكيد الحضور</h2>
                 <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">يرجى تأكيد حضوركم الكريم إن كنتم ستشاركوننا</p>
@@ -380,6 +396,7 @@
                     <button type="submit" class="btn">إرسال التأكيد عبر الواتساب</button>
                 </form>
             </div>
+            <!-- القسم الأخير لا يحتاج سهم لأسفل -->
         </section>
 
         <footer style="padding: 30px 20px; text-align: center; color: #888; font-size: 0.85rem; background-color: #fff;">
@@ -428,6 +445,11 @@
             leaf.style.fontSize = Math.random() * 12 + 10 + 'px';
             document.body.appendChild(leaf);
             setTimeout(() => leaf.remove(), 6000);
+        }
+
+        // دالة السكرول السلس عند الضغط على السهم
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
         // العداد التنازلي
