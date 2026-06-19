@@ -28,7 +28,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 1. الشاشة الترحيبية - متوافقة مع الموبايل */
+        /* 1. الشاشة الترحيبية */
         #splash-screen {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -86,10 +86,10 @@
             }
         }
 
-        /* أزرار التحكم الطافية للموبايل */
+        /* أزرار التحكم الطافية */
         .music-control {
             position: fixed;
-            bottom: 20px; left: 20px; /* نقلناه لأسفل ليسهل ضغطه بإصبع الإبهام */
+            bottom: 20px; left: 20px;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--primary);
@@ -103,7 +103,7 @@
 
         /* الأقسام (Sections) */
         section {
-            min-height: 100vh; /* كل قسم يأخذ شاشة الموبايل بالكامل */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -140,7 +140,7 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* 3. الكروت والعداد التنازلي المرن للموبايل */
+        /* 3. الكروت والعداد التنازلي المرن */
         .card {
             background: white;
             padding: 30px 20px;
@@ -165,7 +165,7 @@
             border: 1px solid rgba(197, 168, 128, 0.4);
             padding: 10px 0;
             border-radius: 12px;
-            flex: 1; /* يضمن توزيع الصناديق بالتساوي على أي شاشة موبايل */
+            flex: 1;
             max-width: 75px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
@@ -183,7 +183,7 @@
             font-weight: bold;
         }
 
-        /* الأزرار والمدخلات للموبايل */
+        /* الأزرار والمدخلات */
         .btn {
             background: var(--primary);
             color: white;
@@ -195,7 +195,7 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 15px;
-            width: 100%; /* تأخذ عرض الكارت بالكامل ليسهل الضغط عليها */
+            width: 100%;
             box-sizing: border-box;
             transition: 0.3s;
             font-weight: bold;
@@ -234,7 +234,7 @@
         <button class="open-btn animate__animated animate__pulse animate__infinite" onclick="openInvitation()">افتح الدعوة ✉</button>
     </div>
 
-    <!-- زر الموسيقى العائم أسفل الشاشة لسهولة الاستخدام على الموبايل -->
+    <!-- زر الموسيقى العائم -->
     <button class="music-control" onclick="toggleMusic()" style="display:none;" id="music-btn">🎵</button>
     
     <audio id="bg-music" loop>
@@ -271,7 +271,7 @@
             </div>
         </section>
 
-        <!-- القسم الثالث: RSVP تأكيد الحضور -->
+        <!-- القسم الثالث: RSVP تأكيد الحضور بعد التعديل -->
         <section style="background-color: #f5ede2;">
             <div class="card" data-aos="zoom-in">
                 <h2 style="font-family: 'Amiri', serif; color: var(--secondary); margin-top: 0; font-size: 1.8rem;">تأكيد الحضور</h2>
@@ -282,6 +282,7 @@
                     <select id="attendance" required>
                         <option value="" disabled selected>هل ستشرفنا بالحضور؟</option>
                         <option value="نعم، بكل سرور سأحضر">نعم، بكل سرور سأحضر</option>
+                        <option value="ربما (لم أقرر بعد)">ربما (لم أقرر بعد)</option>
                         <option value="أعتذر، لظروف خاصة">أعتذر، لظروف خاصة</option>
                     </select>
                     <select id="companions">
@@ -302,7 +303,6 @@
     <!-- سكربتات الحركة والتحكم -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // تفعيل أنيميشن التمرير بما يتناسب مع سرعة تصفح الموبايل
         AOS.init({ duration: 800, once: true });
 
         const music = document.getElementById('bg-music');
@@ -315,11 +315,9 @@
                 main.style.display = 'block';
                 setTimeout(() => main.style.opacity = '1', 50);
                 
-                // تشغيل الموسيقى
                 music.play().catch(e => console.log("المتصفح حظر التشغيل التلقائي"));
                 document.getElementById('music-btn').style.display = 'flex';
                 
-                // بدء تساقط الورد بمعدل هادئ لا يثقل الموبايل
                 setInterval(createLeaf, 400);
             }, 800);
         }
@@ -338,7 +336,7 @@
             const leaf = document.createElement('div');
             leaf.classList.add('leaf');
             leaf.innerHTML = '🌸'; 
-            leaf.style.left = Math.random() * 95 + 'vw'; /* حواف أضيق لتناسب الموبايل */
+            leaf.style.left = Math.random() * 95 + 'vw';
             leaf.style.animationDuration = Math.random() * 3 + 3 + 's';
             leaf.style.fontSize = Math.random() * 12 + 10 + 'px';
             document.body.appendChild(leaf);
@@ -369,7 +367,7 @@
             const status = document.getElementById('attendance').value;
             const comp = document.getElementById('companions').value;
             
-            const phoneNumber = "201000000000"; // غيره لرقمك الفعلي بمفتاح الدولة
+            const phoneNumber = "201000000000"; // تذكر تغيير الرقم هنا
             const text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aالمرافقين: ${comp}`;
             
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
