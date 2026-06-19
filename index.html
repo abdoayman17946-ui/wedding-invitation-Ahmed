@@ -183,6 +183,55 @@
             font-weight: bold;
         }
 
+        /* تصميم عداد المرافقين الجديد للموبايل */
+        .companion-label {
+            display: block;
+            text-align: right;
+            font-size: 0.95rem;
+            color: #444;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            padding-right: 5px;
+        }
+
+        .counter-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 8px 0 15px 0;
+        }
+
+        .counter-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .counter-btn:active {
+            background-color: var(--secondary);
+        }
+
+        .counter-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark);
+            min-width: 40px;
+            text-align: center;
+        }
+
         /* الأزرار والمدخلات */
         .btn {
             background: var(--primary);
@@ -194,7 +243,7 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 5px;
             width: 100%;
             box-sizing: border-box;
             transition: 0.3s;
@@ -271,7 +320,7 @@
             </div>
         </section>
 
-        <!-- القسم الثالث: RSVP تأكيد الحضور بعد التعديل -->
+        <!-- القسم الثالث: RSVP تأكيد الحضور والتعديل الجديد -->
         <section style="background-color: #f5ede2;">
             <div class="card" data-aos="zoom-in">
                 <h2 style="font-family: 'Amiri', serif; color: var(--secondary); margin-top: 0; font-size: 1.8rem;">تأكيد الحضور</h2>
@@ -279,20 +328,22 @@
                 
                 <form id="rsvp-form" onsubmit="sendRSVP(event)">
                     <input type="text" id="guest-name" placeholder="إسم الضيف الكريم" required>
+                    
                     <select id="attendance" required>
                         <option value="" disabled selected>هل ستشرفنا بالحضور؟</option>
                         <option value="نعم، بكل سرور سأحضر">نعم، بكل سرور سأحضر</option>
                         <option value="ربما (لم أقرر بعد)">ربما (لم أقرر بعد)</option>
                         <option value="أعتذر، لظروف خاصة">أعتذر، لظروف خاصة</option>
                     </select>
-                    <select id="companions">
-                        <option value="بدون مرافقين">عدد المرافقين</option>
-                        <option value="مرافق واحد">مرافق واحد</option>
-                        <option value="مرافقين اثنين">مرافقين اثنين</option>
-                        <option value="ثلاث مرافقين"><option "ثلاث مرافقين">مرافقين اثنين</option></option>
-                        <option value="اربع مرافقين">مرافقين اثنين</option>
-                        <option value="خمس مرافقين">مرافقين اثنين</option>
-                    </select>
+
+                    <!-- عداد المرافقين بالأزرار الجديد -->
+                    <label class="companion-label">عدد المرافقين بصحبتك:</label>
+                    <div class="counter-container">
+                        <button type="button" class="counter-btn" onclick="decrementCounter()">-</button>
+                        <div class="counter-value" id="companion-count">0</div>
+                        <button type="button" class="counter-btn" onclick="incrementCounter()">+</button>
+                    </div>
+
                     <button type="submit" class="btn">إرسال التأكيد عبر الواتساب</button>
                 </form>
             </div>
@@ -364,14 +415,39 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }, 1000);
 
+        // وظائف العداد الخاص بالمرافقين
+        let count = 0;
+        const maxCompanions = 10; // أقصى عدد مسموح به لمنع التلاعب
+
+        function incrementCounter() {
+            if (count < maxCompanions) {
+                count++;
+                document.getElementById('companion-count').innerText = count;
+            }
+        }
+
+        function decrementCounter() {
+            if (count > 0) {
+                count--;
+                document.getElementById('companion-count').innerText = count;
+            }
+        }
+
+        // إرسال البيانات المحدثة
         function sendRSVP(event) {
             event.preventDefault();
             const name = document.getElementById('guest-name').value;
             const status = document.getElementById('attendance').value;
-            const comp = document.getElementById('companions').value;
+            const companionCount = document.getElementById('companion-count').innerText;
             
-            const phoneNumber = "201033674242"; // تذكر تغيير الرقم هنا
-            const text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aالمرافقين: ${comp}`;
+            const phoneNumber = "201000000000"; // غيره لرقمك الفعلي بمفتاح الدولة
+            
+            // صياغة جملة المرافقين بناءً على العدد
+            let companionText = companionCount === "0" ? "بدون مرافقين" : `${companionCount} مرافقين`;
+            if (companionCount === "1") companionText = "مرافق واحد";
+            if (companionCount === "2") companionText = "مرافقين اثنين";
+
+            const text = `مرحباً، أنا الضيف: ${name}%0Aموقفي من الحضور: ${status}%0Aعدد المرافقين: ${companionText}`;
             
             window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
         }
