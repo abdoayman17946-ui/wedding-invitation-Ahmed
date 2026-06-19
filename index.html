@@ -16,6 +16,8 @@
             --secondary: #8e7544;
             --dark: #2c2c2c;
             --bg: #faf6f0;
+            --whatsapp-green: #25D366; /* لون الواتساب الرئيسي */
+            --whatsapp-dark: #20ba5a;  /* لون الواتساب عند الضغط */
         }
 
         body {
@@ -118,15 +120,15 @@
         .scroll-arrow {
             position: absolute;
             bottom: 95px; 
-            width: 65px;  /* تم التكبير من 55px إلى 65px */
-            height: 65px; /* تم التكبير من 55px إلى 65px */
+            width: 65px;  
+            height: 65px; 
             background: rgba(255, 255, 255, 0.93);
-            border: 2px solid var(--primary); /* زيادة سماكة الإطار قليلاً ليناسب الحجم */
+            border: 2px solid var(--primary); 
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.6rem; /* تم تكبير الأيقونة الداخلية لتتناسب مع حجم الدائرة */
+            font-size: 1.6rem; 
             color: var(--secondary);
             animation: bounce 1.8s infinite;
             cursor: pointer;
@@ -288,7 +290,7 @@
             text-align: center;
         }
 
-        /* الأزرار والمدخلات */
+        /* الأزرار والمدخلات العامة */
         .btn {
             background: var(--primary);
             color: white;
@@ -308,6 +310,17 @@
         }
 
         .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* تنسيق خاص بزر الواتساب باللون الأخضر */
+        .btn-whatsapp {
+            background: var(--whatsapp-green);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:active {
+            background: var(--whatsapp-dark);
             transform: scale(0.98);
         }
 
@@ -412,7 +425,8 @@
                     <!-- حقل الرسالة الاختياري -->
                     <textarea id="guest-message" placeholder="رسالة إلى العروسين ( اختياري )"></textarea>
 
-                    <button type="submit" class="btn">إرسال التأكيد عبر الواتساب</button>
+                    <!-- تم إضافة كلاس btn-whatsapp لتغيير اللون للأخضر -->
+                    <button type="submit" class="btn btn-whatsapp">إرسال التأكيد عبر الواتساب</button>
                 </form>
             </div>
         </section>
