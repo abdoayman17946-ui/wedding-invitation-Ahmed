@@ -140,14 +140,14 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        .quran-verse {
+        /* نمط موحد للبسملة والآية */
+        .verse-text {
             font-family: 'Amiri', serif;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: #e2d1b8;
             max-width: 320px;
-            margin: 15px auto;
+            margin: 5px auto;
             line-height: 1.6;
-            font-style: italic;
         }
 
         /* 3. الكروت والعداد التنازلي المرن */
@@ -193,7 +193,7 @@
             font-weight: bold;
         }
 
-        /* تصميم عداد المرافقين الجديد */
+        /* تصميم عداد المرافقين */
         .companion-label {
             display: block;
             text-align: right;
@@ -303,11 +303,13 @@
     <!-- 2. المحتوى الرئيسي -->
     <div class="main-content" id="main-content">
         
-        <!-- القسم الأول: الواجهة (تمت إضافة الآية الكريمة هنا) -->
+        <!-- القسم الأول: الواجهة -->
         <section class="hero-section">
             <div class="hero-content">
-                <p data-aos="fade-up" style="letter-spacing: 1px; font-size: 1.1rem; margin-bottom: 5px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
-                <p data-aos="fade-up" data-aos-delay="200" class="quran-verse">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"</p>
+                <!-- تم توحيد الخط هنا -->
+                <p data-aos="fade-up" class="verse-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                <p data-aos="fade-up" data-aos-delay="200" class="verse-text">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"</p>
+                
                 <h1 data-aos="zoom-in" data-aos-duration="1200">زين & سارة</h1>
                 <p data-aos="fade-up" data-aos-delay="400" style="font-size: 1.2rem; font-weight: 300;">نترقب حضوركم لتكتمل بهجة ليلتنا</p>
             </div>
